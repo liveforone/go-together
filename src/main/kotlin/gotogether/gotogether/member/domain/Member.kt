@@ -17,7 +17,7 @@ class Member private constructor(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long?,
     @Column(unique = true) val identity: String,
     @Column(unique = true) val email: String,
-    private var pw: String,
+    var pw: String,
     var bankbookNum: String,
     @Convert(converter = RoleConverter::class) val auth: Role
 ) : UserDetails {
