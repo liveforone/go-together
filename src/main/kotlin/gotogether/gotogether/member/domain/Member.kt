@@ -5,14 +5,12 @@ import gotogether.gotogether.exception.exception.MemberCustomException
 import gotogether.gotogether.exception.message.MemberMessage
 import gotogether.gotogether.member.domain.util.PasswordUtil
 import jakarta.persistence.*
-import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.*
 
 @Entity
-@EntityListeners(AuditingEntityListener::class)
 class Member private constructor(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long?,
     @Column(unique = true) val identity: String,
