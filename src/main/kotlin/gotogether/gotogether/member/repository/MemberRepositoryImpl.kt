@@ -28,10 +28,26 @@ class MemberRepositoryImpl @Autowired constructor(
     }
 
     override fun findOneByEmail(email: String): Member {
-        TODO("Not yet implemented")
+        return try {
+            queryFactory.singleQuery {
+                select(entity(Member::class))
+                from(entity(Member::class))
+                where(column(Member::email).equal(email))
+            }
+        } catch (e: NoResultException) {
+            throw MemberCustomException(MemberMessage.MEMBER_IS_NULL.message)
+        }
     }
 
     override fun findOneByIdentity(identity: String): Member {
-        TODO("Not yet implemented")
+        return try {
+            queryFactory.singleQuery {
+                select(entity(Member::class))
+                from(entity(Member::class))
+                where(column(Member::identity).equal(identity))
+            }
+        } catch (e: NoResultException) {
+            throw MemberCustomException(MemberMessage.MEMBER_IS_NULL.message)
+        }
     }
 }
