@@ -1,4 +1,4 @@
-package gotogether.gotogether.exception
+package gotogether.gotogether.exception.exception
 
 import java.lang.RuntimeException
 
