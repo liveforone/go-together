@@ -1,6 +1,7 @@
 package gotogether.gotogether.jwt
 
 import gotogether.gotogether.exception.exception.JwtCustomException
+import gotogether.gotogether.exception.message.JwtMessage
 import gotogether.gotogether.jwt.constant.JwtConstant
 import gotogether.gotogether.member.domain.Member
 import org.springframework.beans.factory.annotation.Value
@@ -66,19 +67,19 @@ class JwtTokenProvider(@Value(JwtConstant.SECRET_KEY_PATH) secretKey: String) {
     }
 
     fun validateToken(token: String?): Boolean {
-        token ?: throw JwtCustomException(JwtConstant.TOKEN_IS_NULL)
+        token ?: throw JwtCustomException(JwtMessage.TOKEN_IS_NULL.message)
 
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token)
             return true
         } catch (e: MalformedJwtException) {
-            logger().info(JwtConstant.INVALID_MESSAGE)
+            logger().info(JwtMessage.INVALID_MESSAGE.message)
         } catch (e: ExpiredJwtException) {
-            logger().info(JwtConstant.EXPIRED_MESSAGE)
+            logger().info(JwtMessage.EXPIRED_MESSAGE.message)
         } catch (e: UnsupportedJwtException) {
-            logger().info(JwtConstant.UNSUPPORTED_MESSAGE)
+            logger().info(JwtMessage.UNSUPPORTED_MESSAGE.message)
         } catch (e: SecurityException) {
-            logger().info(JwtConstant.INVALID_MESSAGE)
+            logger().info(JwtMessage.INVALID_MESSAGE.message)
         }
         return false
     }
