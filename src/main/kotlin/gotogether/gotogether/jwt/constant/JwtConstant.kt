@@ -9,9 +9,4 @@ object JwtConstant {
     const val BEARER_TOKEN = "Bearer"
     const val SECRET_KEY_PATH = "\${jwt.secret}"
     const val TOKEN_SUB_INDEX = 7
-    const val TOKEN_IS_NULL = "Token Is Null"
-    const val INVALID_MESSAGE = "Invalid JWT Token"
-    const val EXPIRED_MESSAGE = "Expired JWT Token"
-    const val UNSUPPORTED_MESSAGE = "Unsupported JWT Token"
-    const val EMPTY_CLAIMS = "JWT claims string is empty."
 }
